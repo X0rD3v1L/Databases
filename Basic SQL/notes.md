@@ -125,7 +125,7 @@ demo=# UPDATE products SET price = 99999 WHERE product_name = 'iPhone 17';
 UPDATE 1
 
 LIKE 'iPhone%'
-
+```
 ### Remove Data
 
 ```
@@ -137,7 +137,9 @@ demo=# SELECT * FROM products;
           1 | iPhone 17    | 99999 | 2025-09-19
 (1 row)
 ```
+
 INSERTED again
+
 ```
 demo=# DELETE FROM products WHERE product_name NOT LIKE 'iPhone 17 Pro%';
 DELETE 1
@@ -157,3 +159,5 @@ demo=# SELECT * FROM products;
 ```
 
 ### SQL COMMANDS
+
+![alt text](sql_commands.png)
