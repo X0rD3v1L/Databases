@@ -255,3 +255,39 @@ CONSTRAINT pk_prod PRIMARY KEY(product_id, product_name)
 Composite Primary key is where multiple columns are used to create the key.
 
 Identity Constraint (column)
+
+DROP TABLE IF EXISTS products;
+
+CREATE TABLE products(
+product_id int GENERATED ALWAYS AS IDENTITY,
+product_name varchar(50),
+price float,
+released_date date,
+CONSTRAINT pk_prod PRIMARY KEY(product_id)
+);
+
+INSERT INTO products (product_id,product_name,price,released_date) VALUES (DEFAULT, 'iPhone 17', 102900.00, to_date('19-09-2025', 'dd-mm-yyyy'));
+
+INSERT INTO products (product_id,product_name,price,released_date) VALUES (DEFAULT, 'iPhone 17 Pro', 130900.00, to_date('19-09-2025', 'dd-mm-yyyy'));
+
+INSERT INTO products (product_id,product_name,price,released_date) VALUES (DEFAULT, 'iPhone 17 Pro Max', 149900.00, to_date('19-09-2025', 'dd-mm-yyyy'));
+
+Foreign Key
+
+DROP TABLE IF EXISTS sales_order;
+
+CREATE TABLE sales_order
+(
+  order_id int GENERATED ALWAYS AS IDENTITY,
+  order_date date,
+  quantity   int,
+  prod_id    int REFERENCES products(product_id),
+  status     varchar(30)
+);
+
+INSERT INTO sales_order (order_id, order_date, quantity, prod_id, status)
+VALUES (DEFAULT, to_date('01-01-2024', 'dd-mm-yyyy'), 2, 1, 'Completed');
+INSERT INTO sales_order (order_id, order_date, quantity, prod_id, status)
+VALUES (DEFAULT, to_date('01-01-2024', 'dd-mm-yyyy'), 1, 2, 'Pending');
+INSERT INTO sales_order (order_id, order_date, quantity, prod_id, status)
+VALUES (DEFAULT, to_date('01-01-2024', 'dd-mm-yyyy'), 1, 3, 'Completed');
